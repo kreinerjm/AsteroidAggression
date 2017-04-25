@@ -98,11 +98,10 @@ public class SideScrollerTileWorld extends World{
     createCraters();
     average();
     placeMineralNodes();
-    enemies.add(new Alien());
   }
 
   public void placeMineralNodes(){
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < 3; i++){
       int randX = (int)(Math.random()*worldWidth);
       int y = height[randX]+1;
 

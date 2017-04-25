@@ -11,9 +11,9 @@ import com.badlogic.gdx.math.Vector2;
  * Created by Jacob on 4/22/2017.
  */
 public class Alien extends Character{
-  public int hitpoints = 5;
+  public int hitpoints = 25;
   public static final float speed = 4f;
-  Texture alienTexture = new Texture(Gdx.files.internal("mostro.png"));
+  static Texture alienTexture = new Texture(Gdx.files.internal("mostro.png"));
   public Alien(){
     Transform t = new Transform();
     t.position.x = (float)Math.random()*128f*16f;

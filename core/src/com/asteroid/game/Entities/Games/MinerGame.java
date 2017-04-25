@@ -76,11 +76,21 @@ public class MinerGame extends Game{
         else {
           alienWarning2.play();
         }
+        currentSong.stop();
         currentSong = fight;
         currentSong.play();
         for(int i = 0; i < numEnemies; i++){
           getChild(SideScrollerTileWorld.class).enemies.add(new Alien());
         }
+        numEnemies *= 2;
+      }
+    }
+    else if(currentSong.equals(fight)){
+      if(getChild(SideScrollerTileWorld.class).enemies.size()<=0){
+        currentSong.stop();
+        getChild(SideScrollerTileWorld.class).placeMineralNodes();
+        currentSong = backgroundTexture;
+        currentSong.play();
       }
     }
     //batch.draw(background,-500,-500);
