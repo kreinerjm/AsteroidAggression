@@ -19,7 +19,7 @@ public class Turret extends Entity {
   Texture turretBase = new Texture("turretBase.png");
   Texture turretGun = new Texture("turretGun.png");
 
-  int tileX, tileY;
+  public int tileX, tileY;
   float currentDirection = 0;
 
   boolean shot = false;
@@ -36,6 +36,14 @@ public class Turret extends Entity {
     b.draw(turretBase,tileX*16,tileY*16,32,16);
     //SpriteBatch.draw(textureRegion, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
     b.draw(turretGun, tileX*16,tileY*16+16,16,8,32,16,1,1,currentDirection,0,0,32,16,false,false);
+    //currentDirection += 2*Math.PI/50;
+  }
+
+  public void draw(SpriteBatch b,float x, float y) {
+    updateRotation();
+    b.draw(turretBase,x,tileY*16,32,16);
+    //SpriteBatch.draw(textureRegion, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
+    b.draw(turretGun,x,tileY*16+16,16,8,32,16,1,1,currentDirection,0,0,32,16,false,false);
     //currentDirection += 2*Math.PI/50;
   }
 

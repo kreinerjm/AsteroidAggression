@@ -30,4 +30,9 @@ public class MineralNode extends Entity{
     b.draw(t,pos.x,pos.y,16,32);
     //System.out.println("drawing metal node at "+pos.x+","+pos.y);
   }
+  public void draw(SpriteBatch b, float x, float y) {
+    b.draw(t,x,y,16,32);
+    System.out.println("drawing metal node at "+x+","+y);
+  }
+
 }

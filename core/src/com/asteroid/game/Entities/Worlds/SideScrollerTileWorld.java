@@ -71,20 +71,114 @@ public class SideScrollerTileWorld extends World{
     }
 
     for(MineralNode m : mineralNodes){
-      m.draw(batch);
+      if(AsteroidAggression.game.getCamera().position.x - 960/2 < 0)
+      {
+        System.out.println("Seam is to the left");
+        if(m.getComponent(Transform.class).position.x > 8*128){
+          m.draw(batch, m.getComponent(Transform.class).position.x-16*128,m.getComponent(Transform.class).position.y);
+          System.out.println("drawing node to left of seam");
+        }
+        else {
+          m.draw(batch);
+        }
+      }
+      else if(AsteroidAggression.game.getCamera().position.x + 960/2 > 16*128){
+        System.out.println("Seam is to the right");
+        if(m.getComponent(Transform.class).position.x < 8*128){
+          m.draw(batch, m.getComponent(Transform.class).position.x+16*128,m.getComponent(Transform.class).position.y);
+          System.out.println("drawing node to right of seam");
+        }
+        else {
+          m.draw(batch);
+        }
+      }
+      else{
+        m.draw(batch);
+      }
+
     }
 
     for(Laser l : lasers){
       l.update();
+      if(AsteroidAggression.game.getCamera().position.x - 960/2 < 0)
+      {
+        System.out.println("Seam is to the left");
+        if(l.x > 8*128){
+          l.draw(batch, l.x-16*128,l.y);
+          System.out.println("drawing node to left of seam");
+        }
+        else {
+          l.draw(batch);
+        }
+      }
+      else if(AsteroidAggression.game.getCamera().position.x + 960/2 > 16*128){
+        System.out.println("Seam is to the right");
+        if(l.x < 8*128){
+          l.draw(batch, l.x+16*128,l.y);
+          System.out.println("drawing node to right of seam");
+        }
+        else {
+          l.draw(batch);
+        }
+      }
+      else{
+        l.draw(batch);
+      }
       l.draw(batch);
     }
 
     for(Turret t : turrets){
-      t.draw(batch);
+      if(AsteroidAggression.game.getCamera().position.x - 960/2 < 0)
+      {
+        System.out.println("Seam is to the left");
+        if(t.tileX*16 > 8*128){
+          t.draw(batch, t.tileX*16-16*128,t.tileY*16);
+          System.out.println("drawing node to left of seam");
+        }
+        else {
+          t.draw(batch);
+        }
+      }
+      else if(AsteroidAggression.game.getCamera().position.x + 960/2 > 16*128){
+        System.out.println("Seam is to the right");
+        if(t.tileX*16 < 8*128){
+          t.draw(batch, t.tileX*16+16*128,t.tileY*16);
+          System.out.println("drawing node to right of seam");
+        }
+        else {
+          t.draw(batch);
+        }
+      }
+      else{
+        t.draw(batch);
+      }
     }
 
     for(Alien a : enemies){
-      a.draw(batch);
+      if(AsteroidAggression.game.getCamera().position.x - 960/2 < 0)
+      {
+        System.out.println("Seam is to the left");
+        if(a.getComponent(Transform.class).position.x > 8*128){
+          a.draw(batch, a.getComponent(Transform.class).position.x-16*128,a.getComponent(Transform.class).position.y);
+          System.out.println("drawing node to left of seam");
+        }
+        else {
+          a.draw(batch);
+        }
+      }
+      else if(AsteroidAggression.game.getCamera().position.x + 960/2 > 16*128){
+        System.out.println("Seam is to the right");
+        if(a.getComponent(Transform.class).position.x < 8*128){
+          a.draw(batch, a.getComponent(Transform.class).position.x+16*128,a.getComponent(Transform.class).position.y);
+          System.out.println("drawing node to right of seam");
+        }
+        else {
+          a.draw(batch);
+        }
+      }
+      else{
+        a.draw(batch);
+      }
     }
   }
 

@@ -30,6 +30,12 @@ public class Laser extends Entity{
 
   public void update(){
     this.x += dx;
+    if(this.x > 128*16){
+      x = x%(128*16);
+    }
+    else if(this.x < 0){
+      this.x += (128*16);
+    }
     this.y += dy;
     for(Alien a : AsteroidAggression.game.getChild(SideScrollerTileWorld.class).enemies){
       if(this.x < a.getComponent(Transform.class).position.x + 64 && this.y < a.getComponent(Transform.class).position.y + 64 && this.y > a.getComponent(Transform.class).position.y && this.x > a.getComponent(Transform.class).position.x){
@@ -45,6 +51,9 @@ public class Laser extends Entity{
   @Override
   public void draw(SpriteBatch b) {
     b.draw(laser,x,y,16,16);
+  }
+  public void draw(SpriteBatch b,float tox, float toy) {
+    b.draw(laser,tox,toy,16,16);
   }
 
   public float getAngle(Point.Float target) {

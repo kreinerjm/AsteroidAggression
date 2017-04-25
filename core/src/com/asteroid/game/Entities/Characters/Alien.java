@@ -28,6 +28,12 @@ public class Alien extends Character{
     b.draw(alienTexture, getComponent(Transform.class).position.x,getComponent(Transform.class).position.y,64,64);
   }
 
+  public void draw(SpriteBatch b, float x, float y) {
+    Player player = AsteroidAggression.game.getChild(Player.class);
+    moveTowards(player);
+    b.draw(alienTexture, x,y,64,64);
+  }
+
   public void moveTowards(Player p){
     Vector2 positionThis = getComponent(Transform.class).position;
     Vector2 positionTarget = p.getComponent(Transform.class).position;
