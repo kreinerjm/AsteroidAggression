@@ -36,18 +36,19 @@ public class PlayerInput extends Component implements InputComponent {
   int currentTime = 0;
   int maxTime = 6;
   int miningCount = 0;
-  Sound jumpLand = Gdx.audio.newSound(new FileHandle("sounds/effects/JumpLand.mp3"));
-  Sound jumpWhoosh = Gdx.audio.newSound(new FileHandle("sounds/effects/JumpWhoosh.mp3"));
+  Sound jumpLand = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/JumpLand.mp3"));
+  Sound jumpWhoosh = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/JumpWhoosh.mp3"));
+  Sound construction = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/Construction.mp3"));
   ArrayList<Sound> footstepSounds = new ArrayList<Sound>();
   ArrayList<Sound> miningSounds = new ArrayList<Sound>();
-  Sound collectionSound = Gdx.audio.newSound(new FileHandle("sounds/effects/MineralCollection.mp3"));
+  Sound collectionSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/MineralCollection.mp3"));
 
   public PlayerInput(){
     for(int i = 1; i < 7; i++){
-      footstepSounds.add(Gdx.audio.newSound(new FileHandle("sounds/effects/Footsteps"+i+".mp3")));
+      footstepSounds.add(Gdx.audio.newSound(Gdx.files.internal("sounds/effects/Footsteps"+i+".mp3")));
     }
     for(int i = 1; i < 7; i++){
-      miningSounds.add(Gdx.audio.newSound(new FileHandle(("sounds/effects/Mining"+i+".mp3"))));
+      miningSounds.add(Gdx.audio.newSound(Gdx.files.internal(("sounds/effects/Mining"+i+".mp3"))));
     }
   }
 
@@ -224,6 +225,7 @@ public class PlayerInput extends Component implements InputComponent {
           if(Player.metalCount >= 5){
             world.turrets.add(new Turret((int)pos.x,(int)pos.y));
             Player.metalCount -= 5;
+            construction.play(.5f);
           }
         }
       }

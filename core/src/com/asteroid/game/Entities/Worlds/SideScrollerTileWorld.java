@@ -6,6 +6,7 @@ import com.asteroid.game.Components.PhysicsComponents.Transform;
 import com.asteroid.game.Entities.Characters.Alien;
 import com.asteroid.game.Entities.Characters.Player;
 import com.asteroid.game.Entities.Minerals.MineralNode;
+import com.asteroid.game.Entities.Projectiles.Laser;
 import com.asteroid.game.Entities.Turrets.Turret;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -29,8 +30,9 @@ public class SideScrollerTileWorld extends World{
   Texture asteroid = new Texture("Asteroid.png");
 
   CopyOnWriteArrayList<MineralNode> mineralNodes = new CopyOnWriteArrayList<MineralNode>();
-  public ArrayList<Turret> turrets = new ArrayList<Turret>();
-  public ArrayList<Alien> enemies = new ArrayList<Alien>();
+  public CopyOnWriteArrayList<Turret> turrets = new CopyOnWriteArrayList<Turret>();
+  public CopyOnWriteArrayList<Alien> enemies = new CopyOnWriteArrayList<Alien>();
+  public CopyOnWriteArrayList<Laser> lasers = new CopyOnWriteArrayList<Laser>();
 
   public SideScrollerTileWorld(){
     createWorld();
@@ -72,8 +74,17 @@ public class SideScrollerTileWorld extends World{
       m.draw(batch);
     }
 
+    for(Laser l : lasers){
+      l.update();
+      l.draw(batch);
+    }
+
     for(Turret t : turrets){
       t.draw(batch);
+    }
+
+    for(Alien a : enemies){
+      a.draw(batch);
     }
   }
 
@@ -82,7 +93,6 @@ public class SideScrollerTileWorld extends World{
   }
 
   private void createWorld(){
-
     fillSin();
     fillFlat();
     createCraters();

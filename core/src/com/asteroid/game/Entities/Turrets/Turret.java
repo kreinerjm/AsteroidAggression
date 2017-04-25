@@ -4,6 +4,7 @@ import com.asteroid.game.AsteroidAggression;
 import com.asteroid.game.Components.PhysicsComponents.Transform;
 import com.asteroid.game.Entities.Characters.Alien;
 import com.asteroid.game.Entities.Entity;
+import com.asteroid.game.Entities.Projectiles.Laser;
 import com.asteroid.game.Entities.Worlds.SideScrollerTileWorld;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -46,7 +47,17 @@ public class Turret extends Entity {
       Point.Float p2 = new Point.Float(target.getComponent(Transform.class).position.x,target.getComponent(Transform.class).position.y);
       currentDirection = getAngle(p2);
       if(!shot){
-
+        shot = true;
+        shotTime = 0;
+        AsteroidAggression.game.getChild(SideScrollerTileWorld.class).lasers.add(new Laser(tileX*16 + 8,tileY*16 + 8,target));
+      }
+      else{
+        if(shotTime < 10){
+          shotTime++;
+        }
+        else {
+          shot = false;
+        }
       }
     }
   }
